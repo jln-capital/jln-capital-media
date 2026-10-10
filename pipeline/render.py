@@ -57,7 +57,8 @@ def parse(text):
             break
         m = re.match(r'\[(M1|M5|M15)\]', ln)
         if m and cur is not None:
-            tf = m.group(1); cur['tfs'][tf] = []; continue
+            tf = m.group(1); cur['tfs'][tf] = []
+            r_ = re.search(r'rows=(\d+)', ln); cur.setdefault('decl', {})[tf] = int(r_.group(1)) if r_ else None; continue
         if section == 'head' and '=' in ln:
             k, v = ln.split('=', 1); head[k.strip()] = v.strip(); continue
         if section == 'trades' and ln.startswith('T;'):
@@ -204,6 +205,8 @@ def main():
     if abs(float(head.get('balance_end', start + net)) - (start + net + float(head.get('day_deposits', 0)) + float(head.get('day_other', 0)))) > 1.0: errs.append('balance_end mismatch')
     for b in blocks:
         for name, rows in b['tfs'].items():
+            dn = b.get('decl', {}).get(name)
+            if dn is not None and dn != len(rows): errs.append(f"{b['symbol']} {name}: {len(rows)} rows copied, {dn} declared")
             if any(not (r[3] <= min(r[1], r[4]) and r[2] >= max(r[1], r[4])) for r in rows): errs.append(f"bad candle in {b['symbol']} {name}")
             d = {y[0] - x[0] for x, y in zip(rows, rows[1:])}
             if any(x <= 0 or x % TFS[name] for x in d): errs.append(f"bad candle spacing in {b['symbol']} {name}")
