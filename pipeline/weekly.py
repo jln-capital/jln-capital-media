@@ -30,6 +30,7 @@ def main():
     for d in ds:
         for s, v in D[d].get('by', {}).items(): by[s] = by.get(s, 0) + v
     k = wk / sum(by.values()) if by and abs(sum(by.values())) > 1e-9 else 1
+    if not 0.5 <= k <= 1.5: k = 1  # never rescale when the sum is tiny or of opposite sign (would distort or flip signs)
     by = sorted(((s, v * k) for s, v in by.items()), key=lambda x: -x[1])
     MU_, M3 = [m.upper() for m in r.MON], [m[:3].upper() for m in r.MON]
     rng = f'{mon.day} – {fri.day} {MU_[fri.month - 1]} {fri.year}' if mon.month == fri.month else f'{mon.day} {M3[mon.month - 1]} – {fri.day} {M3[fri.month - 1]} {fri.year}'
