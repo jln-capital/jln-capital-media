@@ -63,15 +63,16 @@ def main():
     print('OK', f, '| caption:', len(text), 'chars'); print('PREVIEW /tmp/jln_note_preview.png')
 
 
-def write_feed(items):
-    """items: (guid, title, text, image path, stamp). Replaces posts.xml (feed of the 'JLN Posts' autolist)."""
+def write_feed(items, name='posts.xml', title='Posts'):
+    """items: (guid, title, text, image path, stamp). Replaces the feed file: posts.xml for the 'JLN Posts' autolist
+    (notes) or weekly.xml for the 'JLN Weekly' autolist."""
     now = dt.datetime.now(dt.timezone.utc); out = ''
     for i, (guid, title, text, f, stamp) in enumerate(items):
         size = os.path.getsize(os.path.join(ROOT, f)); d = email.utils.format_datetime(now - dt.timedelta(seconds=i))
         out += f'<item><title>{html.escape(title)}</title><link></link><guid isPermaLink="false">jln-{guid}</guid><pubDate>{d}</pubDate><description><![CDATA[{text}]]></description><enclosure url="{r.BASE}/{f}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{r.BASE}/{f}?v={stamp}" medium="image" type="image/jpeg"/></item>\n'
-    open(os.path.join(ROOT, 'posts.xml'), 'w', encoding='utf-8').write(f'''<?xml version="1.0" encoding="UTF-8"?>
+    open(os.path.join(ROOT, name), 'w', encoding='utf-8').write(f'''<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>JLN Capital · Posts</title><link>{r.BASE}/</link><description>JLN Capital posts</description><language>en</language><atom:link href="{r.BASE}/posts.xml" rel="self" type="application/rss+xml"/>
+<title>JLN Capital · {title}</title><link>{r.BASE}/</link><description>JLN Capital posts</description><language>en</language><atom:link href="{r.BASE}/{name}" rel="self" type="application/rss+xml"/>
 {out}</channel></rss>
 ''')
 

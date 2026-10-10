@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""JLN Capital weekly statement post (single image) for the 'JLN Posts' autolist.
+"""JLN Capital weekly statement post (single image) for the 'JLN Weekly' autolist.
 
 Usage: python3 pipeline/weekly.py [YYYY-MM-DD] [--no-feed]
 The date is any day of the week to report (default: today in Madrid). Uses pipeline/history.json.
-Writes weekly/<monday>/post.jpg (feed post, replaces posts.xml) and two story frames\n(By Day, By Market) that are appended to feed.xml after today's daily stories.
+Writes weekly/<monday>/post.jpg (feed post, replaces weekly.xml, read by the 'JLN Weekly' autolist) and two story frames\n(By Day, By Market) that are appended to feed.xml after today's daily stories.
 Prints NO_WEEK and changes nothing if that week has no trading day in the history.
 """
 import sys, os, json, math, datetime as dt, zoneinfo
@@ -92,7 +92,7 @@ def main():
     text = f"Weekly Statement · {rng_txt}\n\nWeekly change: {r.fp(wk)}\nYTD change: {r.fp(ytd)}\n\n{days}\n\n{mk}\n\nNot investment advice.\n\n#algorithmictrading #proprietarytrading #weeklystatement"
     if '--no-feed' not in sys.argv:
         stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M%S')
-        note.write_feed([(f'weekly-{mon.isoformat()}-{stamp}', f'Weekly {mon.isoformat()}', text, f, stamp)])
+        note.write_feed([(f'weekly-{mon.isoformat()}-{stamp}', f'Weekly {mon.isoformat()}', text, f, stamp)], 'weekly.xml', 'Weekly')
         # stories feed: keep today's daily items (if any), then the two weekly frames
         import re, email.utils
         fp_ = os.path.join(ROOT, 'feed.xml'); feed = open(fp_, encoding='utf-8').read()
