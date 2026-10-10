@@ -3,7 +3,7 @@
 
 Usage: python3 pipeline/weekly.py [YYYY-MM-DD] [--no-feed]
 The date is any day of the week to report (default: today in Madrid). Uses pipeline/history.json.
-Writes weekly/<monday>/post.jpg and replaces posts.xml with this single item.
+Writes weekly/<monday>/post.jpg (feed post, replaces posts.xml) and two story frames\n(By Day, By Market) that are appended to feed.xml after today's daily stories.
 Prints NO_WEEK and changes nothing if that week has no trading day in the history.
 """
 import sys, os, json, math, datetime as dt, zoneinfo
@@ -56,13 +56,55 @@ def main():
     for x in (tmp, png):
         try: os.remove(x)
         except OSError: pass
+    # ---- story frames (By Day, By Market) for the 'JLN Daily' stories autolist
+    def rows(items, tot):
+        mx = max([abs(v) for _, v in items if v is not None] or [1]) or 1
+        h = f'<div style="border-top:1.5px solid {r.FG}">'
+        for kk, v in items:
+            if v is None:
+                bar = '<div style="width:330px"></div>'; val = f'<div style="width:220px;text-align:right;{r.B};font-size:50px;color:{r.MU}">—</div>'
+            else:
+                w = abs(v) / mx * 155
+                bar = f'<div style="width:330px;height:18px;position:relative"><div style="position:absolute;left:165px;top:-9px;width:1px;height:36px;background:{r.LN}"></div><div style="position:absolute;top:0;height:18px;width:{w}px;{"left:165px" if v >= 0 else f"left:{165 - w}px"};background:{r.GR if v >= 0 else r.RD}"></div></div>'
+                val = f'<div style="width:220px;text-align:right;{r.B};font-size:50px;color:{c(v)}">{r.fp(v)}</div>'
+            h += f'<div style="display:flex;align-items:center;justify-content:space-between;padding:38px 0;border-bottom:1px solid {r.LN}"><div style="width:250px;{r.L};font-size:24px;letter-spacing:4px">{kk}</div>{bar}{val}</div>'
+        h += f'<div style="display:flex;align-items:center;justify-content:space-between;padding:38px 0;border-bottom:1.5px solid {r.FG}"><div style="{r.L};font-size:24px;letter-spacing:4px;font-weight:500">{tot[0]}</div><div style="{r.B};font-weight:500;font-size:54px">{r.fp(tot[1])}</div></div>'
+        return h + '</div>'
+    ttl = lambda t: f'<div style="display:flex;justify-content:space-between;align-items:baseline"><div style="{r.B};font-weight:500;font-size:76px;line-height:1">{t}</div><div style="{r.B};font-weight:500;font-size:76px;line-height:1;color:{c(wk)}">{r.fp(wk)}</div></div>'
+    wd = [mon + dt.timedelta(days=i) for i in range(5)]
+    s_day = r.story('WEEKLY STATEMENT &nbsp;·&nbsp; BY DAY', f'<div>{ttl("By Day")}<div style="height:70px"></div>{rows([(f"{DN[d.weekday()].upper()} {d.day} {M3[d.month - 1]}", D[d]["r"] if d in D else None) for d in wd], ("WEEK", wk))}</div>', rng_txt)
+    s_mkt = r.story('WEEKLY STATEMENT &nbsp;·&nbsp; BY MARKET', f'<div>{ttl("By Market")}<div style="height:70px"></div>{rows(by, ("WEEK", wk))}</div>', rng_txt)
+    sfiles = []
+    with sync_playwright() as p:
+        br = p.chromium.launch(); pg = br.new_page(viewport={'width': 1080, 'height': 1920})
+        for nm, h_ in (('story_1_by_day', s_day), ('story_2_by_market', s_mkt)):
+            open(tmp, 'w', encoding='utf-8').write(h_); pg.goto('file://' + tmp); pg.wait_for_timeout(400); pg.screenshot(path=png)
+            sf = f'weekly/{mon.isoformat()}/{nm}.jpg'; Image.open(png).convert('RGB').save(os.path.join(ROOT, sf), 'JPEG', quality=93, subsampling=0, optimize=True); sfiles.append(sf)
+        br.close()
+    sh = Image.new('RGB', (2 * 440 + 40, 827), '#1a1a1a')
+    for i, sf in enumerate(sfiles): sh.paste(Image.open(os.path.join(ROOT, sf)).resize((420, 747)), (30 + i * 440, 40))
+    sh.save('/tmp/jln_weekly_stories_preview.png')
+    for x in (tmp, png):
+        try: os.remove(x)
+        except OSError: pass
     days = ' · '.join(f"{DN[d.weekday()]} {r.fp(D[d]['r'])}" for d in ds)
     mk = ' · '.join(f'{s} {r.fp(v)}' for s, v in by)
     text = f"Weekly Statement · {rng_txt}\n\nWeekly change: {r.fp(wk)}\nYTD change: {r.fp(ytd)}\n\n{days}\n\n{mk}\n\nNot investment advice.\n\n#algorithmictrading #proprietarytrading #weeklystatement"
     if '--no-feed' not in sys.argv:
         stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M%S')
         note.write_feed([(f'weekly-{mon.isoformat()}-{stamp}', f'Weekly {mon.isoformat()}', text, f, stamp)])
-    print('OK', f, f'week {r.fp(wk)}', f'ytd {r.fp(ytd)}'); print(text); print('PREVIEW /tmp/jln_weekly_preview.png')
+        # stories feed: keep today's daily items (if any), then the two weekly frames
+        import re, email.utils
+        fp_ = os.path.join(ROOT, 'feed.xml'); feed = open(fp_, encoding='utf-8').read()
+        today = dt.datetime.now(zoneinfo.ZoneInfo('Europe/Madrid')).date().isoformat()
+        keep = [it for it in re.findall(r'<item>.*?</item>', feed, flags=re.S) if f'jln-daily-{today}-' in it]
+        now = dt.datetime.now(dt.timezone.utc); extra = []
+        for i, sf in enumerate(sfiles):
+            d_ = email.utils.format_datetime(now - dt.timedelta(seconds=60 + i)); size = os.path.getsize(os.path.join(ROOT, sf))
+            extra.append(f'<item><title>Weekly {mon.isoformat()} story {i + 1}/2</title><link></link><guid isPermaLink="false">jln-weekly-story-{mon.isoformat()}-{i + 1}-{stamp}</guid><pubDate>{d_}</pubDate><description></description><enclosure url="{r.BASE}/{sf}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{r.BASE}/{sf}?v={stamp}" medium="image" type="image/jpeg"/></item>')
+        head_ = feed.split('<item>')[0].split('</channel>')[0].rstrip()
+        open(fp_, 'w', encoding='utf-8').write(head_ + '\n' + '\n'.join(keep + extra) + '\n</channel></rss>\n')
+    print('OK', f, f'week {r.fp(wk)}', f'ytd {r.fp(ytd)}'); print(text); print('PREVIEW /tmp/jln_weekly_preview.png /tmp/jln_weekly_stories_preview.png')
 
 
 if __name__ == '__main__':
