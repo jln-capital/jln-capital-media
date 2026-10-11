@@ -10,6 +10,10 @@ English. A discreet private trading firm: calm, precise, impersonal, no hype. Ow
 
 ## Hard rules (no exceptions)
 
+- This is a markets and trading account, not a statistics or mathematics account. Every note must be ABOUT trading or
+  markets and say so in the image itself: statistics, probability and mathematics appear only as applied to trades,
+  systems, returns, risk, prices or market history ("100 trades", "a system that wins half the time", "a 50% loss"),
+  never as abstract coins, dice, doors, birthdays or textbook puzzles.
 - Every fact, date, figure and formula must be TRUE and checked in at least two reliable sources that agree
   (textbooks, academic papers, university material, exchange / index-provider / central-bank pages, established reference works).
   Not forums, not sales pages, not quote-collection sites. Compute every number yourself as well.
@@ -51,8 +55,9 @@ Read `notes/log.json` (it may not exist yet). For the new note:
    depth versus duration of drawdowns. State the index, the period and the source in the caption.
 10. **Behaviour and psychology** — one bias per note (loss aversion, gambler's fallacy, hindsight bias, recency, anchoring,
     confirmation, disposition effect, overconfidence, sunk cost).
-11. **Probability puzzles** — Monty Hall, birthday paradox, streaks in coin flips, St Petersburg, base-rate puzzles.
-    Usually in the `question` format with the full answer in the caption.
+11. **Trading questions** — a question a trader would actually ask, with a counter-intuitive but exact answer: the chance
+    of a losing streak in a sound system, whether a 90% win rate is profitable, how many trades are needed to judge a
+    system, what a streak says about the next trade. Usually in the `question` format with the full answer in the caption.
 12. **Systematic trading philosophy** — process over outcome, rules versus discretion, discipline, simplicity.
 
 ## NOTE.json
