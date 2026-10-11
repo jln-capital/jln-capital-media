@@ -22,3 +22,12 @@ Requirements: Python 3 with `playwright` (Chromium) and `Pillow`. Fonts are in `
 - `render.py` : parser, validation, charts, pages, feed.
 - `config.json` : `test_magics` = magic numbers of test strategies (hidden from charts, still counted in results).
 - `history.json` : daily result in percent since inception, used for MTD/YTD.
+
+## Weekly, monthly and notes
+
+- `weekly.py` : weekly statement post (WEEKLY CHANGE with a small MTD / YTD line) -> `weekly.xml` ('JLN Weekly' autolist), plus two
+  story frames appended to `feed.xml`. Run on Fridays by the daily job. `--post-only` renders only the image (backfill).
+- `monthly.py` : monthly statement post (month, MONTHLY CHANGE, YTD line, building) -> `posts.xml` ('JLN Posts' autolist).
+  Run by the notes job on its first run of a month, in place of that day's note, when `monthly/YYYY-MM/post.jpg` of the
+  previous month does not exist yet.
+- `note.py` + `NOTES.md` : the notes series -> `posts.xml`.

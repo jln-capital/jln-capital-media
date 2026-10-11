@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """JLN Capital weekly statement post (single image) for the 'JLN Weekly' autolist.
 
-Usage: python3 pipeline/weekly.py [YYYY-MM-DD] [--no-feed]
+Usage: python3 pipeline/weekly.py [YYYY-MM-DD] [--no-feed] [--post-only]
 The date is any day of the week to report (default: today in Madrid). Uses pipeline/history.json.
 Writes weekly/<monday>/post.jpg (feed post, replaces weekly.xml, read by the 'JLN Weekly' autolist) and two story frames\n(By Day, By Market) that are appended to feed.xml after today's daily stories.
 Prints NO_WEEK and changes nothing if that week has no trading day in the history.
@@ -15,6 +15,44 @@ import note
 DN = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
 
+def attribution(days, D):
+    """Exact contribution of each market to the compounded return of a period: every daily contribution is
+    weighted by the equity at the start of that day, so the figures add up to the period return."""
+    e = 1.0; out = {}
+    for d in days:
+        v = D[d]; tot = sum(v.get('by', {}).values()); k = v['r'] / tot if abs(tot) > 1e-9 else 1
+        for s, c in v.get('by', {}).items(): out[s] = out.get(s, 0) + c * k * e
+        e *= 1 + v['r'] / 100
+    return sorted(out.items(), key=lambda x: -x[1])
+
+
+def col(v):
+    return r.FG if v >= 0 else r.MU
+
+
+def figure(label, v, size=104):
+    """Main figure of a statement card: small label and the number."""
+    return f'<div style="display:flex;flex-direction:column;align-items:center;gap:{round(size * 0.22)}px"><div style="{r.L};font-size:17px;letter-spacing:7px;color:{r.MU}">{label}</div><div style="{r.B};font-weight:500;font-size:{size}px;line-height:1;letter-spacing:-0.02em;color:{col(v)}">{r.fp(v)}</div></div>'
+
+
+def line(items):
+    """Secondary line: [(label, value), ...] in small type."""
+    return '<div style="display:flex;gap:54px;align-items:baseline">' + ''.join(f'<div style="{r.L};font-size:17px;letter-spacing:6px;color:{r.MU}">{a} &nbsp;<span style="{r.B};font-weight:500;font-size:36px;letter-spacing:0;color:{col(v)};vertical-align:-4px">{r.fp(v)}</span></div>' for a, v in items) + '</div>'
+
+
+def building(bw=480):
+    bh = round(bw * 172 / 532)
+    return f'<div style="opacity:0.5;width:{bw + 80}px;display:flex;flex-direction:column;align-items:center"><svg width="{bw}" height="{bh}" viewBox="8 28 532 172">{r.building(r.FG, 1.3, 0)}</svg><div style="width:{bw + 80}px;height:1.5px;background:{r.FG};margin-top:-1px"></div></div>'
+
+
+def card(label, blocks, foot, gap=50):
+    """1080x1350 statement card: header, vertically centred blocks, footer."""
+    return f'''<html><head><meta charset="utf-8"><style>{r.FF}body{{margin:0}}</style></head><body><div style="position:relative;width:1080px;height:1350px;background:{r.BG};color:{r.FG};overflow:hidden">
+<div style="position:absolute;left:0;right:0;top:92px;text-align:center"><div style="{r.B};font-weight:500;font-size:30px;letter-spacing:11px;margin-right:-11px">JLN CAPITAL</div><div style="width:56px;height:1.5px;background:{r.FG};margin:18px auto 16px"></div><div style="{r.L};font-size:19px;letter-spacing:5px;color:{r.MU}">{label}</div></div>
+<div style="position:absolute;left:0;right:0;top:250px;height:900px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:{gap}px">{"".join(blocks)}</div>
+<div style="position:absolute;left:0;right:0;bottom:104px;text-align:center;{r.B};font-size:26px;letter-spacing:4px">{foot}</div></div></body></html>'''
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     day = dt.date.fromisoformat(args[0]) if args else dt.datetime.now(zoneinfo.ZoneInfo('Europe/Madrid')).date()
@@ -26,24 +64,13 @@ def main():
         print('NO_WEEK', mon); return
     comp = lambda xs: (math.prod(1 + x / 100 for x in xs) - 1) * 100
     wk = comp([D[d]['r'] for d in ds]); ytd = comp([v['r'] for d, v in sorted(D.items()) if d.year == fri.year and d <= fri])
-    by = {}
-    for d in ds:
-        for s, v in D[d].get('by', {}).items(): by[s] = by.get(s, 0) + v
-    k = wk / sum(by.values()) if by and abs(sum(by.values())) > 1e-9 else 1
-    if not 0.5 <= k <= 1.5: k = 1  # never rescale when the sum is tiny or of opposite sign (would distort or flip signs)
-    by = sorted(((s, v * k) for s, v in by.items()), key=lambda x: -x[1])
+    last = ds[-1]; mtd = comp([D[d]['r'] for d in sorted(D) if (d.year, d.month) == (last.year, last.month) and d <= last])
+    by = attribution(ds, D)
     MU_, M3 = [m.upper() for m in r.MON], [m[:3].upper() for m in r.MON]
     rng = f'{mon.day} – {fri.day} {MU_[fri.month - 1]} {fri.year}' if mon.month == fri.month else f'{mon.day} {M3[mon.month - 1]} – {fri.day} {M3[fri.month - 1]} {fri.year}'
     rng_txt = f'{mon.day} – {fri.day} {r.MON[fri.month - 1]} {fri.year}' if mon.month == fri.month else f'{mon.day} {r.MON[mon.month - 1][:3]} – {fri.day} {r.MON[fri.month - 1][:3]} {fri.year}'
     c = lambda v: r.FG if v >= 0 else r.MU
-    html = f'''<html><head><meta charset="utf-8"><style>{r.FF}body{{margin:0}}</style></head><body><div style="position:relative;width:1080px;height:1350px;background:{r.BG};color:{r.FG};overflow:hidden">
-<div style="position:absolute;left:0;right:0;top:92px;text-align:center"><div style="{r.B};font-weight:500;font-size:30px;letter-spacing:11px;margin-right:-11px">JLN CAPITAL</div><div style="width:56px;height:1.5px;background:{r.FG};margin:18px auto 16px"></div><div style="{r.L};font-size:19px;letter-spacing:5px;color:{r.MU}">WEEKLY STATEMENT</div></div>
-<div style="position:absolute;left:0;right:0;top:400px;display:flex;flex-direction:column;align-items:center">
-<div style="{r.L};font-size:19px;letter-spacing:7px;color:{r.MU}">WEEKLY CHANGE</div><div style="{r.B};font-weight:500;font-size:118px;line-height:1;letter-spacing:-2px;color:{c(wk)};margin-top:26px">{r.fp(wk)}</div>
-<div style="width:300px;height:1px;background:{r.LN};margin:62px 0 56px"></div>
-<div style="{r.L};font-size:19px;letter-spacing:7px;color:{r.MU}">YTD CHANGE</div><div style="{r.B};font-weight:500;font-size:118px;line-height:1;letter-spacing:-2px;color:{c(ytd)};margin-top:26px">{r.fp(ytd)}</div></div>
-<div style="position:absolute;left:0;right:0;bottom:120px;text-align:center;{r.B};font-size:26px;letter-spacing:4px">{rng}</div>
-</div></body></html>'''
+    html = card('WEEKLY STATEMENT', [figure('WEEKLY CHANGE', wk), line([('MTD', mtd), ('YTD', ytd)])], rng)
     from playwright.sync_api import sync_playwright
     from PIL import Image
     out_dir = os.path.join(ROOT, 'weekly', mon.isoformat()); os.makedirs(out_dir, exist_ok=True)
@@ -57,6 +84,8 @@ def main():
     for x in (tmp, png):
         try: os.remove(x)
         except OSError: pass
+    if '--post-only' in sys.argv:   # backfill: only the post image, no stories, no feeds
+        print('OK', f, f'week {r.fp(wk)}', f'mtd {r.fp(mtd)}', f'ytd {r.fp(ytd)}'); return
     # ---- story frames (By Day, By Market) for the 'JLN Daily' stories autolist
     def rows(items, tot):
         mx = max([abs(v) for _, v in items if v is not None] or [1]) or 1
@@ -90,7 +119,7 @@ def main():
         except OSError: pass
     days = ' · '.join(f"{DN[d.weekday()]} {r.fp(D[d]['r'])}" for d in ds)
     mk = ' · '.join(f'{s} {r.fp(v)}' for s, v in by)
-    text = f"Weekly Statement · {rng_txt}\n\nWeekly change: {r.fp(wk)}\nYTD change: {r.fp(ytd)}\n\n{days}\n\n{mk}\n\nNot investment advice.\n\n#algorithmictrading #proprietarytrading #weeklystatement"
+    text = f"Weekly Statement · {rng_txt}\n\nWeekly change: {r.fp(wk)}\nMTD change: {r.fp(mtd)}\nYTD change: {r.fp(ytd)}\n\n{days}\n\n{mk}\n\nNot investment advice.\n\n#algorithmictrading #proprietarytrading #weeklystatement"
     if '--no-feed' not in sys.argv:
         stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M%S')
         note.write_feed([(f'weekly-{mon.isoformat()}-{stamp}', f'Weekly {mon.isoformat()}', text, f, stamp)], 'weekly.xml', 'Weekly')
