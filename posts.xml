@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>JLN Capital · Posts</title><link>https://jln-capital.github.io/jln-capital-media/</link><description>JLN Capital posts</description><language>en</language><atom:link href="https://jln-capital.github.io/jln-capital-media/posts.xml" rel="self" type="application/rss+xml"/>
+<item><title>Note 1</title><link></link><guid isPermaLink="false">jln-note-1-20261013162213</guid><pubDate>Tue, 13 Oct 2026 16:22:13 +0000</pubDate><description><![CDATA[Notes No. 1
+
+A trading account that loses 50% needs a 100% gain just to get back to where it started. A loss and the gain that repairs it are never the same size.
+
+After a drawdown, the next gain is earned on a smaller balance. An account that falls from 100 to 50 has to double to return to 100. The gain needed to recover a loss d is d / (1 − d): 11.1% after a 10% loss, 25% after a 20% loss, 100% after a 50% loss. This is why the depth of a drawdown matters more than it first appears.
+
+Not investment advice.
+
+#algorithmictrading #quantitativetrading #riskmanagement]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/001.jpg?v=20261013162213" type="image/jpeg" length="95316"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/001.jpg?v=20261013162213" medium="image" type="image/jpeg"/></item>
 </channel></rss>

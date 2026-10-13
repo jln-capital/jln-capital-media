@@ -1,0 +1,24 @@
+[
+ {
+  "no": 1,
+  "date": "2026-10-13",
+  "format": "statement",
+  "headline": "A trading account that loses 50% needs a 100% gain just to get back to where it started. A loss and the gain that repairs it are never the same size.",
+  "topic": "mathematics of returns / drawdown recovery",
+  "sources": [
+   "https://articles.stockcharts.com/article/articles-dancing-2024-04-market-research-and-analysis-p-539/",
+   "https://pepperstone.com/en/insights/guides/trading-strategies/drawdown"
+  ],
+  "note": {
+   "format": "statement",
+   "line1": "A trading account that loses 50% needs a 100% gain just to get back to where it started.",
+   "line2": "A loss and the gain that repairs it are never the same size.",
+   "caption": "After a drawdown, the next gain is earned on a smaller balance. An account that falls from 100 to 50 has to double to return to 100. The gain needed to recover a loss d is d / (1 − d): 11.1% after a 10% loss, 25% after a 20% loss, 100% after a 50% loss. This is why the depth of a drawdown matters more than it first appears.",
+   "topic": "mathematics of returns / drawdown recovery",
+   "sources": [
+    "https://articles.stockcharts.com/article/articles-dancing-2024-04-market-research-and-analysis-p-539/",
+    "https://pepperstone.com/en/insights/guides/trading-strategies/drawdown"
+   ]
+  }
+ }
+]
