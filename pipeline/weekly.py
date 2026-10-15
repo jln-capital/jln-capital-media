@@ -128,9 +128,12 @@ def main():
         fp_ = os.path.join(ROOT, 'feed.xml'); feed = open(fp_, encoding='utf-8').read()
         today = dt.datetime.now(zoneinfo.ZoneInfo('Europe/Madrid')).date().isoformat()
         keep = [it for it in re.findall(r'<item>.*?</item>', feed, flags=re.S) if f'jln-daily-{today}-' in it]
-        now = dt.datetime.now(dt.timezone.utc); extra = []
+        now = dt.datetime.now(dt.timezone.utc).replace(second=0, microsecond=0); extra = []
+        # weekly frames go after the daily ones: each one minute older than the oldest daily item (Metricool compares to the minute)
+        ds_ = [email.utils.parsedate_to_datetime(x) for it in keep for x in re.findall(r'<pubDate>(.*?)</pubDate>', it)]
+        base_ = min(ds_) - dt.timedelta(minutes=1) if ds_ else now
         for i, sf in enumerate(sfiles):
-            d_ = email.utils.format_datetime(now - dt.timedelta(seconds=60 + i)); size = os.path.getsize(os.path.join(ROOT, sf))
+            d_ = email.utils.format_datetime(base_ - dt.timedelta(minutes=i)); size = os.path.getsize(os.path.join(ROOT, sf))
             extra.append(f'<item><title>Weekly {mon.isoformat()} story {i + 1}/2</title><link></link><guid isPermaLink="false">jln-weekly-story-{mon.isoformat()}-{i + 1}-{stamp}</guid><pubDate>{d_}</pubDate><description></description><enclosure url="{r.BASE}/{sf}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{r.BASE}/{sf}?v={stamp}" medium="image" type="image/jpeg"/></item>')
         head_ = feed.split('<item>')[0].split('</channel>')[0].rstrip()
         open(fp_, 'w', encoding='utf-8').write(head_ + '\n' + '\n'.join(keep + extra) + '\n</channel></rss>\n')

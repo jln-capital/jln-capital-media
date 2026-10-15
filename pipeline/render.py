@@ -291,7 +291,8 @@ def main():
     if not no_feed:
         now = dt.datetime.now(dt.timezone.utc); stamp = now.strftime('%Y%m%d%H%M%S'); items = ''
         for i, f in enumerate(files):
-            d = email.utils.format_datetime(now - dt.timedelta(seconds=i))
+            # one full minute apart, cover newest: Metricool keeps pubDate to the minute, so items in the same minute tie and get shuffled
+            d = email.utils.format_datetime(now.replace(second=0, microsecond=0) - dt.timedelta(minutes=i))
             size = os.path.getsize(os.path.join(ROOT, f))
             items += f'<item><title>Daily {key} {i + 1}/{len(files)}</title><link></link><guid isPermaLink="false">jln-daily-{key}-{i + 1}-{stamp}</guid><pubDate>{d}</pubDate><description></description><enclosure url="{BASE}/{f}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{BASE}/{f}?v={stamp}" medium="image" type="image/jpeg"/></item>\n'
         open(os.path.join(ROOT, 'feed.xml'), 'w', encoding='utf-8').write(f'''<?xml version="1.0" encoding="UTF-8"?>
