@@ -1,6 +1,7 @@
 # JLN Capital daily pipeline
 
-Turns the JLN-DAILY e-mail report into Instagram story images and updates the feed that the Metricool autolist "JLN Daily" reads.
+Turns the JLN-DAILY e-mail report into Instagram story images and updates the two feeds Metricool reads: `cover.xml`
+(autolist "JLN Cover", the cover alone, 22:00) and `feed.xml` (autolist "JLN Daily", the other stories, from 22:01).
 
 ## Run
 
@@ -8,16 +9,13 @@ Turns the JLN-DAILY e-mail report into Instagram story images and updates the fe
    For each `[CANDLES]` block only ONE timeframe is needed: the smallest of M1/M5/M15 whose rows count is 110 or fewer
    (if none, the largest timeframe). The other timeframe sections of that block may be left out.
 2. `python3 pipeline/render.py /path/to/report.txt`
-   - `OK ...` : images written to `daily/YYYY-MM-DD/`, `pipeline/history.json` and `feed.xml` updated. Look at `/tmp/jln_daily_preview.png`.
+   - `OK ...` : images written to `daily/YYYY-MM-DD/`, `pipeline/history.json`, `cover.xml` and `feed.xml` updated. Look at `/tmp/jln_daily_preview.png`.
    - `NO_TRADES` : nothing to publish, nothing changed.
    - `VALIDATION FAILED` (exit 2) : nothing changed. Do not publish. Report the listed reasons.
    - `REFUSED: test report` (exit 3) : the e-mail has `test=1`; only use `--allow-test` when explicitly asked to run a test.
-3. `python3 pipeline/stage.py split` (on Fridays after `weekly.py`): feed.xml keeps only the cover, the other stories wait in
-   `pipeline/feed_pending.xml`. Commit and push to `main`. GitHub Pages serves `feed.xml`; Metricool picks up new items within
-   about 10 minutes.
-4. Second batch: `python3 pipeline/stage.py wait` until it prints `READY` (5 minutes after the split), then `python3 pipeline/stage.py release`, commit and push again. The rest of the stories follow the cover.
-   Reason: when the whole day landed in the feed at once, the "JLN Daily" autolist did not keep the feed order (the cover
-   came out second).
+3. Commit and push to `main` before 22:00 Madrid. GitHub Pages serves both feeds; Metricool picks up new items within about
+   10 minutes. The cover has its own feed and autolist because, when it shared `feed.xml` with the charts, Metricool did not
+   keep the feed order (the cover came out second). The autolist time slots fix the order: cover 22:00, the rest from 22:01.
 
 Requirements: Python 3 with `playwright` (Chromium) and `Pillow`. Fonts are in `pipeline/fonts`.
 

@@ -4,7 +4,7 @@
 Usage: python3 pipeline/render.py REPORT.txt [--allow-test] [--no-feed]
 
 REPORT.txt = body text of the JLN-DAILY e-mail(s), all parts concatenated in order.
-Writes daily/YYYY-MM-DD/*.jpg, updates pipeline/history.json and feed.xml.
+Writes daily/YYYY-MM-DD/*.jpg, updates pipeline/history.json, cover.xml (cover) and feed.xml (other stories).
 Exit codes: 0 ok / no trades, 2 validation failed (nothing written), 3 test report refused.
 """
 import sys, os, re, json, math, datetime as dt, email.utils, calendar
@@ -287,19 +287,29 @@ def main():
     sh.save('/tmp/jln_daily_preview.png')
 
     json.dump(dict(sorted(hist.items())), open(hist_path, 'w'), indent=0)
-    # ---- feed: only today's items, cover first; empty link + empty description (stories carry no text)
+    # ---- feeds (empty link + empty description: stories carry no text)
+    #   cover.xml : today's cover alone, read by the 'JLN Cover' autolist (22:00)
+    #   feed.xml  : today's other stories in order, read by the 'JLN Daily' autolist (from 22:01)
+    # Two autolists because Metricool did not keep the feed order when the cover shared a feed with the charts.
     if not no_feed:
-        now = dt.datetime.now(dt.timezone.utc); stamp = now.strftime('%Y%m%d%H%M%S'); items = ''
-        for i, f in enumerate(files):
-            # one full minute apart, cover newest: Metricool keeps pubDate to the minute, so items in the same minute tie and get shuffled
-            d = email.utils.format_datetime(now.replace(second=0, microsecond=0) - dt.timedelta(minutes=i))
+        now = dt.datetime.now(dt.timezone.utc); stamp = now.strftime('%Y%m%d%H%M%S')
+        base = now.replace(second=0, microsecond=0)
+
+        def item(n, f, d):
             size = os.path.getsize(os.path.join(ROOT, f))
-            items += f'<item><title>Daily {key} {i + 1}/{len(files)}</title><link></link><guid isPermaLink="false">jln-daily-{key}-{i + 1}-{stamp}</guid><pubDate>{d}</pubDate><description></description><enclosure url="{BASE}/{f}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{BASE}/{f}?v={stamp}" medium="image" type="image/jpeg"/></item>\n'
-        open(os.path.join(ROOT, 'feed.xml'), 'w', encoding='utf-8').write(f'''<?xml version="1.0" encoding="UTF-8"?>
+            return f'<item><title>Daily {key} {n}/{len(files)}</title><link></link><guid isPermaLink="false">jln-daily-{key}-{n}-{stamp}</guid><pubDate>{email.utils.format_datetime(d)}</pubDate><description></description><enclosure url="{BASE}/{f}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{BASE}/{f}?v={stamp}" medium="image" type="image/jpeg"/></item>\n'
+
+        def write(name, title, desc, items):
+            open(os.path.join(ROOT, name), 'w', encoding='utf-8').write(f'''<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>JLN Capital · Daily</title><link>{BASE}/</link><description>JLN Capital daily statements</description><language>en</language><atom:link href="{BASE}/feed.xml" rel="self" type="application/rss+xml"/>
+<title>{title}</title><link>{BASE}/</link><description>{desc}</description><language>en</language><atom:link href="{BASE}/{name}" rel="self" type="application/rss+xml"/>
 {items}</channel></rss>
 ''')
+
+        write('cover.xml', 'JLN Capital · Cover', 'JLN Capital daily statement cover', item(1, files[0], base))
+        # one full minute apart, first chart newest: Metricool keeps pubDate to the minute, so items in the same minute tie
+        write('feed.xml', 'JLN Capital · Daily', 'JLN Capital daily statements',
+              ''.join(item(i + 2, f, base - dt.timedelta(minutes=i)) for i, f in enumerate(files[1:])))
     print('OK', key, f'day {fp(day_pct)}', f'mtd {fp(mtd)}', ' '.join(f'{s} {fp(v)}' for s, v in sym_pct.items()))
     print('FILES', ' '.join(files))
     print('PREVIEW /tmp/jln_daily_preview.png')
