@@ -119,7 +119,7 @@ def main():
         except OSError: pass
     days = ' · '.join(f"{DN[d.weekday()]} {r.fp(D[d]['r'])}" for d in ds)
     mk = ' · '.join(f'{s} {r.fp(v)}' for s, v in by)
-    text = f"Weekly Statement · {rng_txt}\n\nWeekly change: {r.fp(wk)}\nMTD change: {r.fp(mtd)}\nYTD change: {r.fp(ytd)}\n\n{days}\n\n{mk}\n\nNot investment advice.\n\n#algorithmictrading #proprietarytrading #weeklystatement"
+    text = f"Weekly Statement · {rng_txt}\n\nWeekly change: {r.fp(wk)}\nMTD change: {r.fp(mtd)}\nYTD change: {r.fp(ytd)}\n\n{days}\n\n{mk}\n\nNot investment advice.\n\n#algotrading #algorithmictrading #tradingstrategy #daytrading #trading"
     if '--no-feed' not in sys.argv:
         stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M%S')
         note.write_feed([(f'weekly-{mon.isoformat()}-{stamp}', f'Weekly {mon.isoformat()}', text, f, stamp)], 'weekly.xml', 'Weekly')

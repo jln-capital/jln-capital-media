@@ -42,7 +42,7 @@ def main():
         try: os.remove(x)
         except OSError: pass
     pos = sum(D[d]['r'] > 0 for d in ds); mk = ' · '.join(f'{s} {r.fp(v)}' for s, v in by)
-    text = f"Monthly Statement · {name} {y}\n\nMonthly change: {r.fp(mo)}\nYTD change: {r.fp(ytd)}\n\n{mk}\n\n{len(ds)} trading days, {pos} positive.\n\nNot investment advice.\n\n#algorithmictrading #proprietarytrading #monthlystatement"
+    text = f"Monthly Statement · {name} {y}\n\nMonthly change: {r.fp(mo)}\nYTD change: {r.fp(ytd)}\n\n{mk}\n\n{len(ds)} trading days, {pos} positive.\n\nNot investment advice.\n\n#algotrading #algorithmictrading #tradingstrategy #daytrading #trading"
     if '--no-feed' not in sys.argv:
         stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M%S')
         note.write_feed([(f'monthly-{y}-{m:02d}-{stamp}', f'Monthly {y}-{m:02d}', text, f, stamp)])

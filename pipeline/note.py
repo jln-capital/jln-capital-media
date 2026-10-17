@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.join(ROOT, 'pipeline'))
 import render as r
 
 SERIES = 'NOTES'
-TAGS = '#algorithmictrading #quantitativetrading #riskmanagement'
+TAGS = '#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading'
 B, L, FG, MU, LN, BG, CG = r.B, r.L, r.FG, r.MU, r.LN, r.BG, r.CG
 ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI']
 
