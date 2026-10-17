@@ -12,8 +12,13 @@ Turns the JLN-DAILY e-mail report into Instagram story images and updates the fe
    - `NO_TRADES` : nothing to publish, nothing changed.
    - `VALIDATION FAILED` (exit 2) : nothing changed. Do not publish. Report the listed reasons.
    - `REFUSED: test report` (exit 3) : the e-mail has `test=1`; only use `--allow-test` when explicitly asked to run a test.
-3. Commit and push to `main`. GitHub Pages serves `feed.xml`; Metricool picks up new items within about 10 minutes and the
-   autolist publishes them as stories, one per scheduled minute. Metricool swaps the first two items, so the feed lists chart 1 first and the cover second; the stories come out cover first.
+3. `python3 pipeline/stage.py split` (on Fridays after `weekly.py`): feed.xml keeps only the cover, the other stories wait in
+   `pipeline/feed_pending.xml`. Commit and push to `main`. GitHub Pages serves `feed.xml`; Metricool picks up new items within
+   about 10 minutes.
+4. Second batch: `python3 pipeline/stage.py wait` until it prints `READY` (from 22:02 Madrid and at least 12 minutes after
+   the split), then `python3 pipeline/stage.py release`, commit and push again. The rest of the stories follow the cover.
+   Reason: when the whole day landed in the feed at once, the "JLN Daily" autolist did not keep the feed order (the cover
+   came out second).
 
 Requirements: Python 3 with `playwright` (Chromium) and `Pillow`. Fonts are in `pipeline/fonts`.
 
