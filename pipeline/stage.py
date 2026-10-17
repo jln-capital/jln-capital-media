@@ -6,7 +6,7 @@ come out second). So the cover goes out alone first and the rest of the stories 
   split    after render.py (and weekly.py on Fridays): feed.xml keeps only the cover, every other item moves to
            pipeline/feed_pending.xml. Commit and push.
   wait     sleeps (at most 9 minutes per call) until the release is allowed; prints READY or WAIT <seconds>.
-  release  allowed from 22:02 Madrid and at least 12 minutes after split: puts the pending items back into feed.xml
+  release  allowed 5 minutes after split: puts the pending items back into feed.xml
            after the cover, with fresh pubDates (one minute apart, in order), and deletes the pending file.
            Commit and push again.
 """
@@ -16,8 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FEED = os.path.join(ROOT, 'feed.xml')
 PENDING = os.path.join(ROOT, 'pipeline', 'feed_pending.xml')
 MAD = zoneinfo.ZoneInfo('Europe/Madrid')
-RELEASE_AT = dt.time(22, 2)
-MIN_GAP = dt.timedelta(minutes=12)
+MIN_GAP = dt.timedelta(minutes=5)
 
 
 def items_of(text):
@@ -41,8 +40,7 @@ def read_pending():
 
 
 def release_time(split_at):
-    now = dt.datetime.now(MAD)
-    return max(dt.datetime.combine(now.date(), RELEASE_AT, MAD), split_at.astimezone(MAD) + MIN_GAP)
+    return split_at.astimezone(MAD) + MIN_GAP
 
 
 def split():

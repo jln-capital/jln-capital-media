@@ -15,8 +15,7 @@ Turns the JLN-DAILY e-mail report into Instagram story images and updates the fe
 3. `python3 pipeline/stage.py split` (on Fridays after `weekly.py`): feed.xml keeps only the cover, the other stories wait in
    `pipeline/feed_pending.xml`. Commit and push to `main`. GitHub Pages serves `feed.xml`; Metricool picks up new items within
    about 10 minutes.
-4. Second batch: `python3 pipeline/stage.py wait` until it prints `READY` (from 22:02 Madrid and at least 12 minutes after
-   the split), then `python3 pipeline/stage.py release`, commit and push again. The rest of the stories follow the cover.
+4. Second batch: `python3 pipeline/stage.py wait` until it prints `READY` (5 minutes after the split), then `python3 pipeline/stage.py release`, commit and push again. The rest of the stories follow the cover.
    Reason: when the whole day landed in the feed at once, the "JLN Daily" autolist did not keep the feed order (the cover
    came out second).
 
