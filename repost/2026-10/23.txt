@@ -1,0 +1,9 @@
+Notes No. 2
+
+Is a trading system that wins 90% of its trades always profitable?
+
+No. What a system earns per trade is its expectancy: the win rate times the average win, minus the loss rate times the average loss. A system that wins 90% of the time with an average gain of 1 and an average loss of 10 earns 0.9 × 1 − 0.1 × 10 = −0.1 per trade. Over 100 trades that is 90 wins worth +90 and 10 losses worth −100, a net result of −10. A win rate says how often a system is right, not how much it makes.
+
+Notes from my trading. Not investment advice.
+
+#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading
