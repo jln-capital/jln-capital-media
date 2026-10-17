@@ -25,9 +25,9 @@ B = "font-family:'Bodoni Moda'"; L = "font-family:Lab"
 FF = ''.join(
     f"@font-face{{font-family:'{n}';font-weight:{w};src:url('file://{PIPE}/fonts/{p}-latin-{w}-normal.woff2')}}"
     for n, p, w in (('Bodoni Moda', 'bodoni-moda', 500), ('Bodoni Moda', 'bodoni-moda', 400), ('Lab', 'libre-franklin', 400), ('Lab', 'libre-franklin', 500))) + (
-    # header band: stories (1080x1920) band 0-335px with the title centred in it, posts (1080x1350) band 0-207px
-    f'body>div[style*="height:1920px"]{{background:linear-gradient(to bottom,{BAND} 0,{BAND} 335px,{BG} 335px) !important;padding-top:120px !important}}'
-    'body>div[style*="height:1920px"]>div:first-child{margin-bottom:110px}'
+    # header band: stories (1080x1920) band 0-370px with the title at 230px (below the Instagram story top bar), posts (1080x1350) band 0-207px
+    f'body>div[style*="height:1920px"]{{background:linear-gradient(to bottom,{BAND} 0,{BAND} 370px,{BG} 370px) !important;padding-top:230px !important}}'
+    'body>div[style*="height:1920px"]>div:first-child{margin-bottom:85px}'
     f'body>div[style*="height:1350px"]{{background:linear-gradient(to bottom,{BAND} 0,{BAND} 207px,{BG} 207px) !important}}'
     'body>div[style*="height:1350px"]>div:first-child{top:62px !important}'
     f'body>div:first-child>div:first-child,body>div:first-child>div:first-child *{{color:{BAND_FG} !important}}'
