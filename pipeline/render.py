@@ -287,14 +287,18 @@ def main():
     sh.save('/tmp/jln_daily_preview.png')
 
     json.dump(dict(sorted(hist.items())), open(hist_path, 'w'), indent=0)
-    # ---- feed: only today's items, cover first; empty link + empty description (stories carry no text)
+    # ---- feed: only today's items (chart 1 then cover, see below); empty link + empty description (stories carry no text)
     if not no_feed:
         now = dt.datetime.now(dt.timezone.utc); stamp = now.strftime('%Y%m%d%H%M%S'); items = ''
-        for i, f in enumerate(files):
+        # Metricool's "JLN Daily" autolist publishes the first two feed items swapped (seen 14-16 Oct 2026: chart 1, cover,
+        # then the rest in order), so the feed puts chart 1 first and the cover second; titles/guids keep the real page number.
+        order = [1, 0] + list(range(2, len(files))) if len(files) > 1 else [0]
+        for i, n in enumerate(order):
+            f = files[n]
             # one full minute apart, cover newest: Metricool keeps pubDate to the minute, so items in the same minute tie and get shuffled
             d = email.utils.format_datetime(now.replace(second=0, microsecond=0) - dt.timedelta(minutes=i))
             size = os.path.getsize(os.path.join(ROOT, f))
-            items += f'<item><title>Daily {key} {i + 1}/{len(files)}</title><link></link><guid isPermaLink="false">jln-daily-{key}-{i + 1}-{stamp}</guid><pubDate>{d}</pubDate><description></description><enclosure url="{BASE}/{f}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{BASE}/{f}?v={stamp}" medium="image" type="image/jpeg"/></item>\n'
+            items += f'<item><title>Daily {key} {n + 1}/{len(files)}</title><link></link><guid isPermaLink="false">jln-daily-{key}-{n + 1}-{stamp}</guid><pubDate>{d}</pubDate><description></description><enclosure url="{BASE}/{f}?v={stamp}" type="image/jpeg" length="{size}"/><media:content url="{BASE}/{f}?v={stamp}" medium="image" type="image/jpeg"/></item>\n'
         open(os.path.join(ROOT, 'feed.xml'), 'w', encoding='utf-8').write(f'''<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>JLN Capital · Daily</title><link>{BASE}/</link><description>JLN Capital daily statements</description><language>en</language><atom:link href="{BASE}/feed.xml" rel="self" type="application/rss+xml"/>

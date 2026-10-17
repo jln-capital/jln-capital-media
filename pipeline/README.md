@@ -13,7 +13,7 @@ Turns the JLN-DAILY e-mail report into Instagram story images and updates the fe
    - `VALIDATION FAILED` (exit 2) : nothing changed. Do not publish. Report the listed reasons.
    - `REFUSED: test report` (exit 3) : the e-mail has `test=1`; only use `--allow-test` when explicitly asked to run a test.
 3. Commit and push to `main`. GitHub Pages serves `feed.xml`; Metricool picks up new items within about 10 minutes and the
-   autolist publishes them as stories, one per scheduled minute, in feed order (cover first).
+   autolist publishes them as stories, one per scheduled minute. Metricool swaps the first two items, so the feed lists chart 1 first and the cover second; the stories come out cover first.
 
 Requirements: Python 3 with `playwright` (Chromium) and `Pillow`. Fonts are in `pipeline/fonts`.
 
