@@ -40,6 +40,15 @@ def line(items):
     return '<div style="display:flex;gap:54px;align-items:baseline">' + ''.join(f'<div style="{r.L};font-size:17px;letter-spacing:6px;color:{r.MU}">{a} &nbsp;<span style="{r.B};font-weight:500;font-size:36px;letter-spacing:0;color:{col(v)};vertical-align:-4px">{r.fp(v)}</span></div>' for a, v in items) + '</div>'
 
 
+TAGS = '#algotrading #algorithmictrading #tradingstrategy #daytrading #trading'
+
+
+def caption(rng_txt, wk, mtd, ytd, days, mk):
+    line = 'A good week. Same rules as a bad one.' if wk >= 0 else 'A losing week. Same rules as a winning one.'
+    return (f"Week of {rng_txt}.\n\n{r.fp(wk)} this week · MTD {r.fp(mtd)} · YTD {r.fp(ytd)}\n\n{days}\n{mk}\n\n{line}"
+            f"\n\nMy own account. Not investment advice.\n\n{TAGS}")
+
+
 def building(bw=480):
     bh = round(bw * 172 / 532)
     return f'<div style="opacity:0.5;width:{bw + 80}px;display:flex;flex-direction:column;align-items:center"><svg width="{bw}" height="{bh}" viewBox="8 28 532 172">{r.building(r.FG, 1.3, 0)}</svg><div style="width:{bw + 80}px;height:1.5px;background:{r.FG};margin-top:-1px"></div></div>'
@@ -85,7 +94,8 @@ def main():
         try: os.remove(x)
         except OSError: pass
     if '--post-only' in sys.argv:   # backfill: only the post image, no stories, no feeds
-        print('OK', f, f'week {r.fp(wk)}', f'mtd {r.fp(mtd)}', f'ytd {r.fp(ytd)}'); return
+        days = ' · '.join(f"{DN[d.weekday()]} {r.fp(D[d]['r'])}" for d in ds); mk = ' · '.join(f'{s} {r.fp(v)}' for s, v in by)
+        print('OK', f, f'week {r.fp(wk)}', f'mtd {r.fp(mtd)}', f'ytd {r.fp(ytd)}'); print('CAPTION-BEGIN'); print(caption(rng_txt, wk, mtd, ytd, days, mk)); print('CAPTION-END'); return
     # ---- story frames (By Day, By Market) for the 'JLN Daily' stories autolist
     def rows(items, tot):
         mx = max([abs(v) for _, v in items if v is not None] or [1]) or 1
@@ -119,7 +129,7 @@ def main():
         except OSError: pass
     days = ' · '.join(f"{DN[d.weekday()]} {r.fp(D[d]['r'])}" for d in ds)
     mk = ' · '.join(f'{s} {r.fp(v)}' for s, v in by)
-    text = f"Weekly Statement · {rng_txt}\n\nWeekly change: {r.fp(wk)}\nMTD change: {r.fp(mtd)}\nYTD change: {r.fp(ytd)}\n\n{days}\n\n{mk}\n\nNot investment advice.\n\n#algotrading #algorithmictrading #tradingstrategy #daytrading #trading"
+    text = caption(rng_txt, wk, mtd, ytd, days, mk)
     if '--no-feed' not in sys.argv:
         stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M%S')
         note.write_feed([(f'weekly-{mon.isoformat()}-{stamp}', f'Weekly {mon.isoformat()}', text, f, stamp)], 'weekly.xml', 'Weekly')

@@ -290,7 +290,7 @@ def main():
         for x in (tmp, png):
             try: os.remove(x)
             except OSError: pass
-    text = f"{SERIES.title()} No. {no}\n\n{headline}\n\n{cap}\n\nNot investment advice.\n\n{TAGS}"
+    text = f"{SERIES.title()} No. {no}\n\n{headline}\n\n{cap}\n\nNotes from my trading. Not investment advice.\n\n{TAGS}"
     now = dt.datetime.now(dt.timezone.utc); stamp = now.strftime('%Y%m%d%H%M%S')
     entry = dict(no=no, date=now.date().isoformat(), format=fmt, headline=headline, topic=note.get('topic', ''), sources=note.get('sources', []), note=note)
     log.append(entry)

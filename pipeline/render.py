@@ -15,7 +15,8 @@ sys.path.insert(0, PIPE)
 from zerk import building as _building
 
 BASE = 'https://jln-capital.github.io/jln-capital-media'
-BG = '#EFEBDD'; FG = '#141414'; MU = '#6F6B62'; LN = '#CFC9BA'; CG = '#A39E90'; GR = '#2F6B4F'; RD = '#9B2C3A'
+BG = '#F4F4F2'; FG = '#141414'; MU = '#6E6E6D'; LN = '#D5D5D3'; CG = '#969695'; GR = '#2F5E47'; RD = '#8A2E3B'
+BAND = '#0A0A0A'; BAND_FG = '#ECE9E2'   # black header band with the JLN CAPITAL title inside
 MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 TFS = {'M1': 60, 'M5': 300, 'M15': 900}
 MAX_CANDLES = 100
@@ -23,7 +24,15 @@ MARGIN = 5
 B = "font-family:'Bodoni Moda'"; L = "font-family:Lab"
 FF = ''.join(
     f"@font-face{{font-family:'{n}';font-weight:{w};src:url('file://{PIPE}/fonts/{p}-latin-{w}-normal.woff2')}}"
-    for n, p, w in (('Bodoni Moda', 'bodoni-moda', 500), ('Bodoni Moda', 'bodoni-moda', 400), ('Lab', 'libre-franklin', 400), ('Lab', 'libre-franklin', 500)))
+    for n, p, w in (('Bodoni Moda', 'bodoni-moda', 500), ('Bodoni Moda', 'bodoni-moda', 400), ('Lab', 'libre-franklin', 400), ('Lab', 'libre-franklin', 500))) + (
+    # header band: stories (1080x1920) band 0-335px with the title centred in it, posts (1080x1350) band 0-207px
+    f'body>div[style*="height:1920px"]{{background:linear-gradient(to bottom,{BAND} 0,{BAND} 335px,{BG} 335px) !important;padding-top:120px !important}}'
+    'body>div[style*="height:1920px"]>div:first-child{margin-bottom:110px}'
+    f'body>div[style*="height:1350px"]{{background:linear-gradient(to bottom,{BAND} 0,{BAND} 207px,{BG} 207px) !important}}'
+    'body>div[style*="height:1350px"]>div:first-child{top:62px !important}'
+    f'body>div:first-child>div:first-child,body>div:first-child>div:first-child *{{color:{BAND_FG} !important}}'
+    f'body>div:first-child>div:first-child div[style*="height:1.5px"]{{background:{BAND_FG} !important;opacity:.6}}'
+    'body>div:first-child>div:first-child div[style*="font-size:19px"]{opacity:.7}')
 
 
 def building(*a, **k):
