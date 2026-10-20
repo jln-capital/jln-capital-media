@@ -41,5 +41,31 @@
     "https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Introductory_Statistics_2e_(OpenStax)/04%3A_Discrete_Random_Variables/4.03%3A_Mean_or_Expected_Value_and_Standard_Deviation"
    ]
   }
+ },
+ {
+  "no": 3,
+  "date": "2026-10-20",
+  "format": "definition",
+  "headline": "Survivorship bias: The error of judging past market returns only from the funds, stocks or strategies that still exist today, leaving out those that closed or failed. The losers are missing from the data, so the past looks better than it was.",
+  "topic": "research method / survivorship bias",
+  "sources": [
+   "https://ideas.repec.org/a/oup/rfinst/v9y1996i4p1097-1120.html",
+   "https://pages.stern.nyu.edu/~jcarpen0/pdfs/CarhartCarpenterLynchMusto.pdf",
+   "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/articles/mutualfundsurvbias.htm"
+  ],
+  "note": {
+   "format": "definition",
+   "term": "Survivorship bias",
+   "kind": "Noun · Research method",
+   "text": "The error of judging past market returns only from the funds, stocks or strategies that still exist today, leaving out those that closed or failed.",
+   "line2": "The losers are missing from the data, so the past looks better than it was.",
+   "caption": "Funds that perform poorly are more likely to be closed or merged, and companies that fail drop out of an index. A study that keeps only the survivors therefore overstates the average return that was actually available at the time. The same trap appears in trading research when a strategy is tested only on the stocks that make up an index today. A fair test includes everything that existed on each date, including what later disappeared.",
+   "topic": "research method / survivorship bias",
+   "sources": [
+    "https://ideas.repec.org/a/oup/rfinst/v9y1996i4p1097-1120.html",
+    "https://pages.stern.nyu.edu/~jcarpen0/pdfs/CarhartCarpenterLynchMusto.pdf",
+    "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/articles/mutualfundsurvbias.htm"
+   ]
+  }
  }
 ]

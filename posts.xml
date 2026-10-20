@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>JLN Capital · Posts</title><link>https://jln-capital.github.io/jln-capital-media/</link><description>JLN Capital posts</description><language>en</language><atom:link href="https://jln-capital.github.io/jln-capital-media/posts.xml" rel="self" type="application/rss+xml"/>
-<item><title>Note 2</title><link></link><guid isPermaLink="false">jln-note-2-20261015162154</guid><pubDate>Thu, 15 Oct 2026 16:21:54 +0000</pubDate><description><![CDATA[Notes No. 2
+<item><title>Note 3</title><link></link><guid isPermaLink="false">jln-note-3-20261020162145</guid><pubDate>Tue, 20 Oct 2026 16:21:45 +0000</pubDate><description><![CDATA[Notes No. 3
 
-Is a trading system that wins 90% of its trades always profitable?
+Survivorship bias: The error of judging past market returns only from the funds, stocks or strategies that still exist today, leaving out those that closed or failed. The losers are missing from the data, so the past looks better than it was.
 
-No. What a system earns per trade is its expectancy: the win rate times the average win, minus the loss rate times the average loss. A system that wins 90% of the time with an average gain of 1 and an average loss of 10 earns 0.9 × 1 − 0.1 × 10 = −0.1 per trade. Over 100 trades that is 90 wins worth +90 and 10 losses worth −100, a net result of −10. A win rate says how often a system is right, not how much it makes.
+Funds that perform poorly are more likely to be closed or merged, and companies that fail drop out of an index. A study that keeps only the survivors therefore overstates the average return that was actually available at the time. The same trap appears in trading research when a strategy is tested only on the stocks that make up an index today. A fair test includes everything that existed on each date, including what later disappeared.
 
-Not investment advice.
+Notes from my trading. Not investment advice.
 
-#algorithmictrading #quantitativetrading #riskmanagement]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/002.jpg?v=20261015162154" type="image/jpeg" length="78814"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/002.jpg?v=20261015162154" medium="image" type="image/jpeg"/></item>
+#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/003.jpg?v=20261020162145" type="image/jpeg" length="120918"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/003.jpg?v=20261020162145" medium="image" type="image/jpeg"/></item>
 </channel></rss>
