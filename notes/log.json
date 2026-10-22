@@ -67,5 +67,29 @@
     "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/articles/mutualfundsurvbias.htm"
    ]
   }
+ },
+ {
+  "no": 4,
+  "date": "2026-10-22",
+  "format": "number",
+  "headline": "Ten losing trades in a row, risking 2% each: −18.3%. Not 20%. Each loss is 2% of a balance that has already shrunk. 0.98 to the power of ten is 0.817.",
+  "topic": "risk and position sizing / consecutive losses",
+  "sources": [
+   "https://openstax.org/books/algebra-1/pages/5-5-2-exponential-decay",
+   "https://ctlm.uni.edu/sites/default/files/inline-files/a_closer_look_exponential_decay.pdf"
+  ],
+  "note": {
+   "format": "number",
+   "label": "Ten losing trades in a row, risking 2% each",
+   "number": "−18.3%",
+   "line1": "Not 20%. Each loss is 2% of a balance that has already shrunk.",
+   "line2": "0.98 to the power of ten is 0.817.",
+   "caption": "When a trader risks a fixed fraction of the current balance, each loss is taken from a smaller amount than the one before. After ten losses of 2% the account keeps 0.98 to the power of ten, about 81.7% of where it started, so the total loss is about 18.3% rather than 20%. Losses expressed as percentages of a changing balance multiply rather than add. The same arithmetic works in the other direction for gains.",
+   "topic": "risk and position sizing / consecutive losses",
+   "sources": [
+    "https://openstax.org/books/algebra-1/pages/5-5-2-exponential-decay",
+    "https://ctlm.uni.edu/sites/default/files/inline-files/a_closer_look_exponential_decay.pdf"
+   ]
+  }
  }
 ]
