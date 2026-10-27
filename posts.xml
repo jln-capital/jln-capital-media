@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>JLN Capital · Posts</title><link>https://jln-capital.github.io/jln-capital-media/</link><description>JLN Capital posts</description><language>en</language><atom:link href="https://jln-capital.github.io/jln-capital-media/posts.xml" rel="self" type="application/rss+xml"/>
-<item><title>Note 4</title><link></link><guid isPermaLink="false">jln-note-4-20261022162201</guid><pubDate>Thu, 22 Oct 2026 16:22:01 +0000</pubDate><description><![CDATA[Notes No. 4
+<item><title>Note 5</title><link></link><guid isPermaLink="false">jln-note-5-20261027172146</guid><pubDate>Tue, 27 Oct 2026 17:21:46 +0000</pubDate><description><![CDATA[Notes No. 5
 
-Ten losing trades in a row, risking 2% each: −18.3%. Not 20%. Each loss is 2% of a balance that has already shrunk. 0.98 to the power of ten is 0.817.
+Myth: After five losing trades in a row, a winning trade is due. Fact: If trades are independent, the chance of a win on the next trade is the same as before the streak.
 
-When a trader risks a fixed fraction of the current balance, each loss is taken from a smaller amount than the one before. After ten losses of 2% the account keeps 0.98 to the power of ten, about 81.7% of where it started, so the total loss is about 18.3% rather than 20%. Losses expressed as percentages of a changing balance multiply rather than add. The same arithmetic works in the other direction for gains.
+Expecting a reversal after a run of losses is known as the gambler's fallacy. When the outcome of each trade does not depend on the ones before it, a streak carries no information about the next result. A system that wins 40% of its trades still has a 40% chance of winning the sixth trade after five losses. Over many trades the overall ratio moves towards the true win rate because new trades dilute the streak, not because past losses are paid back.
 
 Notes from my trading. Not investment advice.
 
-#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/004.jpg?v=20261022162201" type="image/jpeg" length="85273"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/004.jpg?v=20261022162201" medium="image" type="image/jpeg"/></item>
+#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/005.jpg?v=20261027172146" type="image/jpeg" length="98456"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/005.jpg?v=20261027172146" medium="image" type="image/jpeg"/></item>
 </channel></rss>

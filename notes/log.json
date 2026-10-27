@@ -91,5 +91,27 @@
     "https://ctlm.uni.edu/sites/default/files/inline-files/a_closer_look_exponential_decay.pdf"
    ]
   }
+ },
+ {
+  "no": 5,
+  "date": "2026-10-27",
+  "format": "myth",
+  "headline": "Myth: After five losing trades in a row, a winning trade is due. Fact: If trades are independent, the chance of a win on the next trade is the same as before the streak.",
+  "topic": "behaviour and psychology / gambler's fallacy",
+  "sources": [
+   "https://www.labxchange.org/library/items/lb:LabXchange:d3429cd1:html:1",
+   "https://openlab.bmcc.cuny.edu/critical-thinking-crt-100-0507-spring23-prof-barnes-asynch/?p=2257"
+  ],
+  "note": {
+   "format": "myth",
+   "myth": "After five losing trades in a row, a winning trade is due.",
+   "fact": "If trades are independent, the chance of a win on the next trade is the same as before the streak.",
+   "caption": "Expecting a reversal after a run of losses is known as the gambler's fallacy. When the outcome of each trade does not depend on the ones before it, a streak carries no information about the next result. A system that wins 40% of its trades still has a 40% chance of winning the sixth trade after five losses. Over many trades the overall ratio moves towards the true win rate because new trades dilute the streak, not because past losses are paid back.",
+   "topic": "behaviour and psychology / gambler's fallacy",
+   "sources": [
+    "https://www.labxchange.org/library/items/lb:LabXchange:d3429cd1:html:1",
+    "https://openlab.bmcc.cuny.edu/critical-thinking-crt-100-0507-spring23-prof-barnes-asynch/?p=2257"
+   ]
+  }
  }
 ]
