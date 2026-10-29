@@ -113,5 +113,44 @@
     "https://openlab.bmcc.cuny.edu/critical-thinking-crt-100-0507-spring23-prof-barnes-asynch/?p=2257"
    ]
   }
+ },
+ {
+  "no": 6,
+  "date": "2026-10-29",
+  "format": "comparison",
+  "headline": "Market order / Limit order. Speed of execution against control of price.",
+  "topic": "how markets work / market and limit orders",
+  "sources": [
+   "https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders",
+   "https://www.finra.org/investors/investing/investment-products/stocks/order-types",
+   "https://www.sec.gov/answers/limit.htm"
+  ],
+  "note": {
+   "format": "comparison",
+   "left": {
+    "head": "Market order",
+    "items": [
+     "Best available price",
+     "Usually fills at once",
+     "No price guarantee"
+    ]
+   },
+   "right": {
+    "head": "Limit order",
+    "items": [
+     "Set price or better",
+     "May never fill",
+     "No fill guarantee"
+    ]
+   },
+   "line1": "Speed of execution against control of price.",
+   "caption": "A market order asks to buy or sell at the best price available when it reaches the market. In a liquid market it is usually filled almost at once, but the final price is not known in advance and can differ from the last quote, especially when prices move fast. A limit order sets the worst price acceptable: a maximum to buy, a minimum to sell. It will never fill at a worse price, but it may fill only in part or not at all if the market does not reach that level.",
+   "topic": "how markets work / market and limit orders",
+   "sources": [
+    "https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders",
+    "https://www.finra.org/investors/investing/investment-products/stocks/order-types",
+    "https://www.sec.gov/answers/limit.htm"
+   ]
+  }
  }
 ]
