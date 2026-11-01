@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""JLN Capital monthly statement post (single image with the building), published through the 'JLN Posts' autolist.
+"""JLN Capital monthly statement post (single image with the building), published through the 'JLN Monthly' autolist.
 
 Usage: python3 pipeline/monthly.py [YYYY-MM] [--no-feed]
 Default month: the previous calendar month (Madrid time). Uses pipeline/history.json.
-Writes monthly/YYYY-MM/post.jpg and, unless --no-feed, replaces posts.xml with this single item.
+Writes monthly/YYYY-MM/post.jpg and, unless --no-feed, replaces monthly.xml with this single item.
 Prints NO_MONTH and changes nothing if that month has no trading day in the history.
 """
 import sys, os, json, math, datetime as dt, zoneinfo
@@ -47,7 +47,7 @@ def main():
             f"\n\nMy own account. Not investment advice.\n\n{w.TAGS}")
     if '--no-feed' not in sys.argv:
         stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M%S')
-        note.write_feed([(f'monthly-{y}-{m:02d}-{stamp}', f'Monthly {y}-{m:02d}', text, f, stamp)])
+        note.write_feed([(f'monthly-{y}-{m:02d}-{stamp}', f'Monthly {y}-{m:02d}', text, f, stamp)], 'monthly.xml', 'Monthly')
     print('OK', f, f'month {r.fp(mo)}', f'ytd {r.fp(ytd)}'); print(text); print('PREVIEW /tmp/jln_monthly_preview.png')
 
 
