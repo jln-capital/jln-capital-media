@@ -152,5 +152,29 @@
     "https://www.sec.gov/answers/limit.htm"
    ]
   }
+ },
+ {
+  "no": 7,
+  "date": "2026-11-03",
+  "format": "formula",
+  "headline": "Uncertainty in a measured win rate: SE = √(p(1 − p) / n). 100 trades at a 50% win rate: SE = 5 points. The 95% interval runs from about 40% to 60%.",
+  "topic": "probability and statistics / standard error of a win rate",
+  "sources": [
+   "https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Introduction_to_Statistics_4e_(Diez_et_al.)/05%3A_Foundations_for_Inference/5.02%3A_Confidence_intervals_for_a_proportion",
+   "https://www.sjsu.edu/faculty/gerstman/StatPrimer/conf-prop.htm"
+  ],
+  "note": {
+   "format": "formula",
+   "label": "Uncertainty in a measured win rate",
+   "formula": "SE = √(p(1 − p) / n)",
+   "line1": "100 trades at a 50% win rate: SE = 5 points.",
+   "line2": "The 95% interval runs from about 40% to 60%.",
+   "caption": "A win rate measured over a sample of trades is an estimate, and its standard error is the square root of p(1 − p) / n, where p is the observed win rate and n the number of trades. With 100 trades and a 50% win rate the standard error is 0.05, or 5 percentage points. An approximate 95% interval is the estimate plus or minus 1.96 standard errors, here about 40% to 60%. Because n sits under a square root, four times as many trades are needed to halve the uncertainty: 400 trades narrow the same interval to about 45% to 55%.",
+   "topic": "probability and statistics / standard error of a win rate",
+   "sources": [
+    "https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Introduction_to_Statistics_4e_(Diez_et_al.)/05%3A_Foundations_for_Inference/5.02%3A_Confidence_intervals_for_a_proportion",
+    "https://www.sjsu.edu/faculty/gerstman/StatPrimer/conf-prop.htm"
+   ]
+  }
  }
 ]
