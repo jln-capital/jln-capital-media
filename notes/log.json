@@ -176,5 +176,32 @@
     "https://www.sjsu.edu/faculty/gerstman/StatPrimer/conf-prop.htm"
    ]
   }
+ },
+ {
+  "no": 8,
+  "date": "2026-11-05",
+  "format": "long",
+  "headline": "Portfolio Selection, 1952. In 1952 Harry Markowitz published “Portfolio Selection” in the Journal of Finance. It judged a portfolio as a whole, by two numbers: its expected return and the variance of that return.",
+  "topic": "classic papers / Markowitz portfolio selection",
+  "sources": [
+   "https://www.math.hkust.edu.hk/~maykwok/courses/ma362/07F/markowitz_JF.pdf",
+   "https://www.econlib.org/library/Enc/bios/Markowitz.html",
+   "https://afajof.org/nobel-prizes/"
+  ],
+  "note": {
+   "format": "long",
+   "label": "Portfolio Selection, 1952",
+   "paragraphs": [
+    "In 1952 Harry Markowitz published “Portfolio Selection” in the Journal of Finance. It judged a portfolio as a whole, by two numbers: its expected return and the variance of that return.",
+    "Because assets do not move perfectly together, combining them can lower the risk of the whole without lowering its expected return. Diversification became something that could be measured."
+   ],
+   "caption": "Before Markowitz, investment analysis mostly looked at securities one at a time. His 1952 paper in the Journal of Finance proposed choosing a portfolio by the trade-off between expected return and variance, and showed that what matters for risk is how the holdings move together, not only how risky each one is on its own. When returns are less than perfectly correlated, the standard deviation of the combination is lower than the weighted average of the individual standard deviations, while the expected return stays the weighted average. The work became the basis of modern portfolio theory, and Markowitz shared the Nobel Memorial Prize in Economic Sciences in 1990.",
+   "topic": "classic papers / Markowitz portfolio selection",
+   "sources": [
+    "https://www.math.hkust.edu.hk/~maykwok/courses/ma362/07F/markowitz_JF.pdf",
+    "https://www.econlib.org/library/Enc/bios/Markowitz.html",
+    "https://afajof.org/nobel-prizes/"
+   ]
+  }
  }
 ]

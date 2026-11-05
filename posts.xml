@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>JLN Capital · Posts</title><link>https://jln-capital.github.io/jln-capital-media/</link><description>JLN Capital posts</description><language>en</language><atom:link href="https://jln-capital.github.io/jln-capital-media/posts.xml" rel="self" type="application/rss+xml"/>
-<item><title>Note 7</title><link></link><guid isPermaLink="false">jln-note-7-20261103172256</guid><pubDate>Tue, 03 Nov 2026 17:22:56 +0000</pubDate><description><![CDATA[Notes No. 7
+<item><title>Note 8</title><link></link><guid isPermaLink="false">jln-note-8-20261105172112</guid><pubDate>Thu, 05 Nov 2026 17:21:12 +0000</pubDate><description><![CDATA[Notes No. 8
 
-Uncertainty in a measured win rate: SE = √(p(1 − p) / n). 100 trades at a 50% win rate: SE = 5 points. The 95% interval runs from about 40% to 60%.
+Portfolio Selection, 1952. In 1952 Harry Markowitz published “Portfolio Selection” in the Journal of Finance. It judged a portfolio as a whole, by two numbers: its expected return and the variance of that return.
 
-A win rate measured over a sample of trades is an estimate, and its standard error is the square root of p(1 − p) / n, where p is the observed win rate and n the number of trades. With 100 trades and a 50% win rate the standard error is 0.05, or 5 percentage points. An approximate 95% interval is the estimate plus or minus 1.96 standard errors, here about 40% to 60%. Because n sits under a square root, four times as many trades are needed to halve the uncertainty: 400 trades narrow the same interval to about 45% to 55%.
+Before Markowitz, investment analysis mostly looked at securities one at a time. His 1952 paper in the Journal of Finance proposed choosing a portfolio by the trade-off between expected return and variance, and showed that what matters for risk is how the holdings move together, not only how risky each one is on its own. When returns are less than perfectly correlated, the standard deviation of the combination is lower than the weighted average of the individual standard deviations, while the expected return stays the weighted average. The work became the basis of modern portfolio theory, and Markowitz shared the Nobel Memorial Prize in Economic Sciences in 1990.
 
 Notes from my trading. Not investment advice.
 
-#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/007.jpg?v=20261103172256" type="image/jpeg" length="65996"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/007.jpg?v=20261103172256" medium="image" type="image/jpeg"/></item>
+#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/008.jpg?v=20261105172112" type="image/jpeg" length="153494"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/008.jpg?v=20261105172112" medium="image" type="image/jpeg"/></item>
 </channel></rss>
