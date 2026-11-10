@@ -203,5 +203,29 @@
     "https://afajof.org/nobel-prizes/"
    ]
   }
+ },
+ {
+  "no": 9,
+  "date": "2026-11-10",
+  "format": "history",
+  "headline": "19 October 1987: −22.6%. The Dow Jones Industrial Average fell 22.6% in one session, its largest one-day percentage decline. Black Monday. 508 points in one day.",
+  "topic": "market history / Black Monday 1987",
+  "sources": [
+   "https://www.federalreservehistory.org/essays/stock-market-crash-of-1987",
+   "https://en.wikipedia.org/wiki/Black_Monday_(1987)"
+  ],
+  "note": {
+   "format": "history",
+   "date": "19 October 1987",
+   "number": "−22.6%",
+   "text": "The Dow Jones Industrial Average fell 22.6% in one session, its largest one-day percentage decline.",
+   "line2": "Black Monday. 508 points in one day.",
+   "caption": "On Monday 19 October 1987 the Dow Jones Industrial Average fell 508 points, from 2,246.74 to 1,738.74, a decline of 22.6% in one session. It remains the largest one-day percentage fall in the history of the index. Stock markets around the world fell sharply in the same days. A single session erased more than a fifth of the index value, far outside the range of ordinary daily moves. Source: Federal Reserve History; Dow Jones Industrial Average closing values, 1987.",
+   "topic": "market history / Black Monday 1987",
+   "sources": [
+    "https://www.federalreservehistory.org/essays/stock-market-crash-of-1987",
+    "https://en.wikipedia.org/wiki/Black_Monday_(1987)"
+   ]
+  }
  }
 ]
