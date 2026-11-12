@@ -227,5 +227,49 @@
     "https://en.wikipedia.org/wiki/Black_Monday_(1987)"
    ]
   }
+ },
+ {
+  "no": 10,
+  "date": "2026-11-12",
+  "format": "arithmetic",
+  "headline": "An average return of 0% still lost a quarter of capital. Compound rate: −13.4% a year.",
+  "topic": "mathematics of returns / volatility drag",
+  "sources": [
+   "https://analystprep.com/cfa-level-1-exam/quantitative-methods/arithmetic-return-vs-geometric-return/",
+   "https://blogs.cfainstitute.org/?p=11776"
+  ],
+  "note": {
+   "format": "arithmetic",
+   "steps": [
+    [
+     "Starting capital",
+     "100"
+    ],
+    [
+     "Year 1: gain of 50%",
+     "150"
+    ],
+    [
+     "Year 2: loss of 50%",
+     "75"
+    ],
+    [
+     "Average annual return",
+     "0%"
+    ]
+   ],
+   "result": [
+    "Capital after two years",
+    "75"
+   ],
+   "line1": "An average return of 0% still lost a quarter of capital.",
+   "line2": "Compound rate: −13.4% a year.",
+   "caption": "A portfolio that gains 50% and then loses 50% has an arithmetic average return of 0%, yet it ends at 75 for every 100 it started with. The loss is taken on a larger base than the gain, so swings cost money even when they cancel on paper. The rate that actually describes the path is the geometric mean: the square root of 0.75, minus one, or about −13.4% a year. This gap between the two averages is called volatility drag, and it grows with the size of the swings.",
+   "topic": "mathematics of returns / volatility drag",
+   "sources": [
+    "https://analystprep.com/cfa-level-1-exam/quantitative-methods/arithmetic-return-vs-geometric-return/",
+    "https://blogs.cfainstitute.org/?p=11776"
+   ]
+  }
  }
 ]
