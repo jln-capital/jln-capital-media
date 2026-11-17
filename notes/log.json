@@ -271,5 +271,48 @@
     "https://blogs.cfainstitute.org/?p=11776"
    ]
   }
+ },
+ {
+  "no": 11,
+  "date": "2026-11-17",
+  "format": "table",
+  "headline": "Win rate / Losing run of 5+. Chance of at least five losses in a row over 100 independent trades.",
+  "topic": "trading questions / losing streaks",
+  "sources": [
+   "https://petermchale.github.io/Math175/lectures/L1%20The%20Longest%20Run%20of%20Heads.pdf",
+   "https://www.csun.edu/%7Ehcmth031/GSW.pdf"
+  ],
+  "note": {
+   "format": "table",
+   "head": [
+    "Win rate",
+    "Losing run of 5+"
+   ],
+   "rows": [
+    [
+     "40%",
+     "98%"
+    ],
+    [
+     "50%",
+     "81%"
+    ],
+    [
+     "60%",
+     "46%"
+    ],
+    [
+     "70%",
+     "15%"
+    ]
+   ],
+   "line1": "Chance of at least five losses in a row over 100 independent trades.",
+   "caption": "A losing streak is not by itself evidence that a system has stopped working. If each trade is independent and wins with a fixed probability, the chance of at least one run of five or more consecutive losses somewhere in 100 trades is about 98% at a 40% win rate, 81% at 50%, 46% at 60% and 15% at 70%. The figures are exact results of the standard recursion for runs in independent trials, the same mathematics as the longest run of heads in repeated coin tosses. The longest run of losses grows roughly with the logarithm of the number of trades, so longer samples contain longer streaks.",
+   "topic": "trading questions / losing streaks",
+   "sources": [
+    "https://petermchale.github.io/Math175/lectures/L1%20The%20Longest%20Run%20of%20Heads.pdf",
+    "https://www.csun.edu/%7Ehcmth031/GSW.pdf"
+   ]
+  }
  }
 ]
