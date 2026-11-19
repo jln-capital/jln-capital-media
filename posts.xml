@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>JLN Capital · Posts</title><link>https://jln-capital.github.io/jln-capital-media/</link><description>JLN Capital posts</description><language>en</language><atom:link href="https://jln-capital.github.io/jln-capital-media/posts.xml" rel="self" type="application/rss+xml"/>
-<item><title>Note 11</title><link></link><guid isPermaLink="false">jln-note-11-20261117172226</guid><pubDate>Tue, 17 Nov 2026 17:22:26 +0000</pubDate><description><![CDATA[Notes No. 11
+<item><title>Note 12</title><link></link><guid isPermaLink="false">jln-note-12-20261119172046</guid><pubDate>Thu, 19 Nov 2026 17:20:46 +0000</pubDate><description><![CDATA[Notes No. 12
 
-Win rate / Losing run of 5+. Chance of at least five losses in a row over 100 independent trades.
+One trade shows the outcome, not the quality of the decision. A process can only be judged over many trades.
 
-A losing streak is not by itself evidence that a system has stopped working. If each trade is independent and wins with a fixed probability, the chance of at least one run of five or more consecutive losses somewhere in 100 trades is about 98% at a 40% win rate, 81% at 50%, 46% at 60% and 15% at 70%. The figures are exact results of the standard recursion for runs in independent trials, the same mathematics as the longest run of heads in repeated coin tosses. The longest run of losses grows roughly with the logarithm of the number of trades, so longer samples contain longer streaks.
+Every trade has two separate qualities: whether the rules were followed, and whether it made money. A trade taken by the rules can lose, because no sound system wins every time, and a trade that breaks the rules can still win by chance. Judging a decision by its result alone is known as outcome bias, and its most costly case is the lucky win, which rewards a mistake and makes it more likely to be repeated. Over a large number of trades, results reflect the process; over a single trade, they mostly reflect chance.
 
 Notes from my trading. Not investment advice.
 
-#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/011.jpg?v=20261117172226" type="image/jpeg" length="68065"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/011.jpg?v=20261117172226" medium="image" type="image/jpeg"/></item>
+#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/012.jpg?v=20261119172046" type="image/jpeg" length="111221"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/012.jpg?v=20261119172046" medium="image" type="image/jpeg"/></item>
 </channel></rss>

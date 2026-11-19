@@ -314,5 +314,55 @@
     "https://www.csun.edu/%7Ehcmth031/GSW.pdf"
    ]
   }
+ },
+ {
+  "no": 12,
+  "date": "2026-11-19",
+  "format": "matrix",
+  "headline": "One trade shows the outcome, not the quality of the decision. A process can only be judged over many trades.",
+  "topic": "systematic trading philosophy / process over outcome",
+  "sources": [
+   "https://bear.warrington.ufl.edu/brenner/mar7588/Papers/baron-hershey-jpsp1988.pdf",
+   "https://library.alnap.org/node/67763",
+   "https://fs.blog/2012/10/bad-things-good-decisions/"
+  ],
+  "note": {
+   "format": "matrix",
+   "cols": [
+    "Winning trade",
+    "Losing trade"
+   ],
+   "rows": [
+    "Rules followed",
+    "Rules broken"
+   ],
+   "cells": [
+    [
+     "Earned win",
+     "Process worked"
+    ],
+    [
+     "Normal loss",
+     "Part of the cost"
+    ],
+    [
+     "Lucky win",
+     "Rewards a mistake"
+    ],
+    [
+     "Earned loss",
+     "Process failed"
+    ]
+   ],
+   "line1": "One trade shows the outcome, not the quality of the decision.",
+   "line2": "A process can only be judged over many trades.",
+   "caption": "Every trade has two separate qualities: whether the rules were followed, and whether it made money. A trade taken by the rules can lose, because no sound system wins every time, and a trade that breaks the rules can still win by chance. Judging a decision by its result alone is known as outcome bias, and its most costly case is the lucky win, which rewards a mistake and makes it more likely to be repeated. Over a large number of trades, results reflect the process; over a single trade, they mostly reflect chance.",
+   "topic": "systematic trading philosophy / process over outcome",
+   "sources": [
+    "https://bear.warrington.ufl.edu/brenner/mar7588/Papers/baron-hershey-jpsp1988.pdf",
+    "https://library.alnap.org/node/67763",
+    "https://fs.blog/2012/10/bad-things-good-decisions/"
+   ]
+  }
  }
 ]
