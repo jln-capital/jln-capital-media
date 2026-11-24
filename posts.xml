@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>JLN Capital · Posts</title><link>https://jln-capital.github.io/jln-capital-media/</link><description>JLN Capital posts</description><language>en</language><atom:link href="https://jln-capital.github.io/jln-capital-media/posts.xml" rel="self" type="application/rss+xml"/>
-<item><title>Note 12</title><link></link><guid isPermaLink="false">jln-note-12-20261119172046</guid><pubDate>Thu, 19 Nov 2026 17:20:46 +0000</pubDate><description><![CDATA[Notes No. 12
+<item><title>Note 13</title><link></link><guid isPermaLink="false">jln-note-13-20261124172211</guid><pubDate>Tue, 24 Nov 2026 17:22:11 +0000</pubDate><description><![CDATA[Notes No. 13
 
-One trade shows the outcome, not the quality of the decision. A process can only be judged over many trades.
+Past the optimum, more risk per trade means slower growth. Growth peaks at 25% risked and is zero at 50%.
 
-Every trade has two separate qualities: whether the rules were followed, and whether it made money. A trade taken by the rules can lose, because no sound system wins every time, and a trade that breaks the rules can still win by chance. Judging a decision by its result alone is known as outcome bias, and its most costly case is the lucky win, which rewards a mistake and makes it more likely to be repeated. Over a large number of trades, results reflect the process; over a single trade, they mostly reflect chance.
+Consider a system that wins half its trades, with each win twice the size of each loss, and a fixed fraction of capital risked on every trade. The long-run compound growth rate is 0.5 × ln(1 + 2f) + 0.5 × ln(1 − f), where f is the fraction risked. It peaks at 25%, the Kelly fraction for this edge, falls back to zero at 50%, and is negative beyond that, so capital shrinks over time despite the positive expectancy. Risking 12.5% or 37.5% gives exactly the same growth rate, but the larger size carries far deeper drawdowns.
 
 Notes from my trading. Not investment advice.
 
-#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/012.jpg?v=20261119172046" type="image/jpeg" length="111221"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/012.jpg?v=20261119172046" medium="image" type="image/jpeg"/></item>
+#algotrading #quantitativetrading #riskmanagement #tradingstrategy #trading]]></description><enclosure url="https://jln-capital.github.io/jln-capital-media/notes/013.jpg?v=20261124172211" type="image/jpeg" length="91660"/><media:content url="https://jln-capital.github.io/jln-capital-media/notes/013.jpg?v=20261124172211" medium="image" type="image/jpeg"/></item>
 </channel></rss>
