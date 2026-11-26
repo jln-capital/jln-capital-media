@@ -920,5 +920,32 @@
     "https://en.wikipedia.org/wiki/Kelly_criterion"
    ]
   }
+ },
+ {
+  "no": 14,
+  "date": "2026-11-26",
+  "format": "list",
+  "headline": "Four ways a backtest can mislead: Survivorship: testing only on assets that still exist today Look-ahead: using data that was not yet known at the time Data snooping: trying many rules and keeping the best one Costs: leaving out spreads, commissions and slippage",
+  "topic": "research method / backtest biases",
+  "sources": [
+   "https://bookdown.org/palomar/portfoliooptimizationbook/8.2-seven-sins.html",
+   "https://am.vontobel.com/insights/backtesting-gone-wrong"
+  ],
+  "note": {
+   "format": "list",
+   "label": "Four ways a backtest can mislead",
+   "items": [
+    "Survivorship: testing only on assets that still exist today",
+    "Look-ahead: using data that was not yet known at the time",
+    "Data snooping: trying many rules and keeping the best one",
+    "Costs: leaving out spreads, commissions and slippage"
+   ],
+   "caption": "A backtest replays rules on past prices, and small errors in how it is built can make a weak system look strong. Survivorship bias comes from testing only on assets that survived, leaving out those that were delisted or failed. Look-ahead bias appears when a rule uses information that was only available later, such as revised data or the closing price of the same bar. Data snooping is the result of testing many variations and reporting only the best, which tends to fit noise. Ignoring trading costs inflates every result, most of all for systems that trade often.",
+   "topic": "research method / backtest biases",
+   "sources": [
+    "https://bookdown.org/palomar/portfoliooptimizationbook/8.2-seven-sins.html",
+    "https://am.vontobel.com/insights/backtesting-gone-wrong"
+   ]
+  }
  }
 ]
